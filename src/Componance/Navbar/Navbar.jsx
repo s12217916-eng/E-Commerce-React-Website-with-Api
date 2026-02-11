@@ -28,13 +28,17 @@ export default function Navbar() {
   </Typography>
 
           <Box  sx={{
-      display: "flex", gap: 3, margin: "0 auto"}}>
+      display: "flex", gap: 3, margin: "0 auto",display:{xs:'none',sm:'flex'}}}>
             <Link component={RouterLink} to="/" underline="none" color="inherit">Collection</Link>
             <Link component={RouterLink} to="/" underline="none" color="inherit">New In</Link>
-            <Link component={RouterLink} to="/" underline="none" color="inherit">Modiweek</Link>
-            <Link component={RouterLink} to="/" underline="none" color="inherit">Plus Size</Link>
+            <Link component={RouterLink} to="/login" underline="none" color="inherit">Login</Link>
+            <Link component={RouterLink} to="/Register" underline="none" color="inherit">Register</Link>
             <Link component={RouterLink} to="/" underline="none" color="inherit">Sustainability</Link>
           </Box>
+
+          <IconButton color="inherit" sx={{display:{xs:'flex' , sm:'none'}}}>
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
     </Box>
