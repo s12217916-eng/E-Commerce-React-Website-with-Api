@@ -8,6 +8,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 
+import Categories from "../Categories/Categories";
+
 export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -29,7 +31,10 @@ export default function Navbar() {
 
           <Box  sx={{
       display: "flex", gap: 3, margin: "0 auto",display:{xs:'none',sm:'flex'}}}>
+                    <Link component={RouterLink} to="/categories" underline="none" color="inherit">Categories</Link>
+
             <Link component={RouterLink} to="/" underline="none" color="inherit">Collection</Link>
+            <Link component={RouterLink} to="/Cart" underline="none" color="inherit">Cart</Link>
             <Link component={RouterLink} to="/" underline="none" color="inherit">New In</Link>
             <Link component={RouterLink} to="/login" underline="none" color="inherit">Login</Link>
             <Link component={RouterLink} to="/Register" underline="none" color="inherit">Register</Link>
