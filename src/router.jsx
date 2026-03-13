@@ -7,10 +7,15 @@ import { createBrowserRouter } from "react-router-dom";
 import Cart from "./Pages/Cart/Cart";
 import Categories from "./Componance/Categories/Categories";
 import AuthAxiosInstance from './Api/AuthAxiosInstance';
+import  UserContentProvider  from "./Context/UserContext";
+import Footer from "./Componance/Footer/Footer";
 const router = createBrowserRouter([
     {
 path:'/',
-element:<MainLayout />,
+element: 
+       <UserContentProvider>
+        <MainLayout />
+        </UserContentProvider>,
 children:[
     {
         index:true,
@@ -20,9 +25,10 @@ children:[
         path:'register',
         element:<Register />
     },
-     {
+     { 
         path:'Cart',
-        element:<Cart />
+      element: <Cart />
+       
     },
      {
         path:'Categories',
@@ -36,6 +42,10 @@ children:[
     {
         path:'cart',
         element:<Cart />
+    },
+     {
+        path:'Footer',
+        element:<Footer />
     },
 ]
 

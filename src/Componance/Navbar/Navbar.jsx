@@ -10,10 +10,12 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import Categories from "../Categories/Categories";
 
-export default function Navbar() {
+export default function Navbar({userName}) {
   return (
     <Box sx={{ flexGrow: 1 }}>
+     
       <AppBar position="static" color="default">
+         HI {userName}
         <Toolbar>
           <IconButton
             size="large"

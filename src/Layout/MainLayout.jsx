@@ -4,9 +4,10 @@ import Navbar from './../Componance/Navbar/Navbar';
 import Footer from './../Componance/Footer/Footer'
 import { Container } from '@mui/material';
 export default function MainLayout() {
+    const userName="Zaid";
     return (
         <div>
-            <Navbar />
+            <Navbar userName={userName} />
             <Container  maxWidth="md">
             <Outlet />
             </Container>

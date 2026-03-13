@@ -10,7 +10,6 @@ export default function Register() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(registerSchema), mode: 'onBlur'
   })
-
   const registerForm = async (values) => {
     try {
       const response = await axios.post(
@@ -18,13 +17,11 @@ export default function Register() {
         values
       )
       console.log("response", response)
-
     } catch (error) {
       setserverError(error.response.data.errors);
       console.log("Catch Error", error)
     }
   }
-
   return (
     <Box component="section" py={2}>
       <Typography component="p" variant="h2">Register</Typography>
@@ -45,7 +42,6 @@ export default function Register() {
         alignItems="center"
         sx={{ mx: "auto" }}
       >
-
         <TextField
           {...register('userName')}
           fullWidth
@@ -53,7 +49,6 @@ export default function Register() {
           error={!!errors.userName}
           helperText={errors.userName?.message}
         />
-
         <TextField
           {...register('fullName')}
           fullWidth
@@ -61,7 +56,6 @@ export default function Register() {
           error={!!errors.fullName}
           helperText={errors.fullName?.message}
         />
-
         <TextField
           {...register('email')}
           fullWidth
@@ -69,7 +63,6 @@ export default function Register() {
           error={!!errors.email}
           helperText={errors.email?.message}
         />
-
         <TextField
           {...register('password')}
           type="password"
@@ -78,20 +71,16 @@ export default function Register() {
           error={!!errors.password}
           helperText={errors.password?.message}
         />
-
         <TextField
           {...register('phoneNumber')}
           fullWidth
           label="Phone Number"
           error={!!errors.phoneNumber}
           helperText={errors.phoneNumber?.message}
-        />
-        
+        /> 
         <Button variant="contained" type="submit"  disabled={isSubmitting}>
           {isSubmitting ? <CircularProgress /> : 'Register'}
         </Button>
-
       </Box>
     </Box>
-  )
-}
+  )}

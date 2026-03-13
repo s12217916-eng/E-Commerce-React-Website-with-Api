@@ -10,8 +10,8 @@ export default function Categories() {
     const categoriesArray = data?.response; 
     return (
         <Box>
-            {Array.isArray(categoriesArray) &&
-                categoriesArray.map(category => (
+            {Array.isArray(data) &&
+                data.map(category => (
                     <Box key={category.id}>
                         {category.name || "WOW API"} 
                     </Box>
