@@ -8,7 +8,7 @@ export default function MainLayout() {
     return (
         <div>
             <Navbar userName={userName} />
-            <Container  maxWidth="md">
+            <Container  maxWidth="lg">
             <Outlet />
             </Container>
             <Footer />

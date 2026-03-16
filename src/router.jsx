@@ -9,6 +9,7 @@ import Categories from "./Componance/Categories/Categories";
 import AuthAxiosInstance from './Api/AuthAxiosInstance';
 import  UserContentProvider  from "./Context/UserContext";
 import Footer from "./Componance/Footer/Footer";
+import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 const router = createBrowserRouter([
     {
 path:'/',
@@ -24,6 +25,10 @@ children:[
     {
         path:'register',
         element:<Register />
+    },
+    {
+        path:'Products/:id',
+        element:<ProductDetails />
     },
      { 
         path:'Cart',
