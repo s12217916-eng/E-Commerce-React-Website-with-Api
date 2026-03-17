@@ -6,7 +6,11 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { loginSchema } from '../../../Validation/LoginSchema'
 import { useState } from 'react'
 import { Typography, CircularProgress } from '@mui/material'
+import useAuthStore from '../../../store/useAuthStore'
+import { useNavigate } from 'react-router'
 export default function Login() {
+  const setToken = useAuthStore((state)=>state.setToken);
+  const navigate = useNavigate();
   const [serverError, setserverError] = useState([]);
   const { register, handleSubmit, formState: { errors ,isSubmitting} } = useForm({
     resolver: yupResolver(loginSchema),mode:'onBlur'
@@ -17,8 +21,10 @@ export default function Login() {
         'https://knowledgeshop.runasp.net/api/auth/Account/Login',
         values
       )
-      localStorage.setItem("AccessToken",response.data.accessToken)
-      console.log("Login Success", response)
+      if(response.status === 200){
+        setToken(response.data.accessToken);
+        navigate('/');
+      }
     } catch (error) {
       setserverError(error.response.data.errors);
       console.log("Catch Error", error)

@@ -7,7 +7,7 @@ import Cart from "./Pages/Cart/Cart";
 import UserContentProvider from "./Context/UserContext";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 import CategoriesPage from "./Pages/CategoriesPage/CategoriesPage";
-
+import ProtectedRouter from "./ProtectedRouter";
 const router = createBrowserRouter([
 {
 path: '/',
@@ -40,8 +40,11 @@ element: <ProductDetails />
 
 {
 path: 'cart',
-element: <Cart />
-},
+element:(
+<ProtectedRouter >
+ <Cart />
+</ProtectedRouter>
+)},
 
 {
 path: 'categories',
