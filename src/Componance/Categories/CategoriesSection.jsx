@@ -3,16 +3,13 @@ import useCategories from '../../Hooks/useCategories';
 import Loader from '../../ui/Loader/Loader';
 import { Typography, Grid, Card, CardContent } from '@mui/material';
 import Products from '../Products/Products';
+import { Link } from 'react-router';
+import Category from '../../ui/Category/Category';
 
-export default function Categories() {
-
+export default function CategoriesSection() {
     const { data, isLoading, isError, error } = useCategories();
-
-    console.log(data); // Optional, بس للتاكد
-
     if (isLoading) return <Loader />;
     if (isError) return <Box color="red">{error.message}</Box>;
-
     return (
         <>
         <Box className="categories" py={3}>
@@ -20,21 +17,18 @@ export default function Categories() {
                 Categories:
             </Typography>
 
+            <Link to="/categories" style={{ textDecoration: 'none', color: 'inherit' }}>Show More</Link>
+
             <Grid container spacing={4}>
+
                 {data?.map((category) => (
                     <Grid item xs={12} md={6} lg={3} key={category.id}>
-                        <Card sx={{ py:3, textAlign:"center" }}>
-                            <CardContent>
-                                <Typography fontWeight={600} component="h3">
-                                    {category.name}
-                                </Typography>
-                            </CardContent>
-                        </Card>
+                       <Category category={category} />
                     </Grid>
                 ))}
             </Grid>
         </Box>
-        <Products/>
+       
         </>
     );
 }
