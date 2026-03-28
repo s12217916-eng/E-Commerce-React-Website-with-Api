@@ -8,12 +8,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from '@mui/material';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import useAuthStore from '../../store/useAuthStore';
-
+import useCart from '../../Hooks/useCart';
+import { Badge } from '@mui/material';
 export default function Navbar() {
 
   const navigate = useNavigate();
   const logout = useAuthStore((state)=>state.logout);
   const token = useAuthStore((state)=>state.token);
+const {data} = useCart();
+const cardcount = data?.items?.length || 0 ;
+console.log("cardcount", cardcount)
 
   const handelLogOut = ()=>{
     logout();
@@ -43,7 +47,10 @@ export default function Navbar() {
 
             {token ? (
               <>
-                <Link component={RouterLink} to="/cart" underline="none" color="inherit">Cart</Link>
+              <Badge badgeContent={cardcount} color="secondary">
+                 <Link component={RouterLink} to="/cart" underline="none" color="inherit">Cart</Link>
+                 </Badge>
+               
 
                 <Typography onClick={handelLogOut} sx={{cursor:"pointer"}}>
                   Logout
@@ -55,13 +62,10 @@ export default function Navbar() {
                 <Link component={RouterLink} to="/register" underline="none" color="inherit">Register</Link>
               </>
             )}
-
           </Box>
-
           <IconButton color="inherit" sx={{display:{xs:'flex' , sm:'none'}}}>
             <MenuIcon />
           </IconButton>
-
         </Toolbar>
       </AppBar>
     </Box>

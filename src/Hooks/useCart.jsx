@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import AuthAxiosInstance from '../Api/AuthAxiosInstance';
 export default function useCart() {
   const getitem = async  ()=>{
-const response = await  AuthAxiosInstance.get('Carts');
+const response = await  AuthAxiosInstance.get('/Carts');
 return response.data;
   }
 
