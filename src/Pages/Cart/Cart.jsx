@@ -5,7 +5,10 @@ import useRemoveFromCart from '../../Hooks/useRemoveFromCart';
 import useUpdataCartItem from '../../Hooks/useUpdataCartItem';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveItem from '@mui/icons-material/Remove';
+import { useNavigate } from 'react-router-dom';
+import CheckOut from '../CheckOut/CheckOut';
 export default function Cart() {
+    const navigate = useNavigate();
     const { data, isLoading, error, Loader } = useCart();
     const { mutate: RemoveeItem, isPendingItem } = useRemoveFromCart();
     const { mutate: UpdateCartItem, isPending: isPendingUpdate } = useUpdataCartItem();
@@ -71,6 +74,16 @@ export default function Cart() {
                     </TableFooter>
                 </Table>
             </TableContainer>
+
+            <Box sx={{display:"flex" , mt:4,justifyContent:"space-between",gap:2}}>
+                <Button variant='contained' color='success'  sx={{ flexGrow: 1, flexShrink: 1 }}
+                onClick={()=>navigate('/CheckOut')}
+                >Check Out</Button>
+                <Button variant='contained' color='error' sx={{ flexGrow: 1, flexShrink: 1 }}
+                onClick={()=>navigate('/')}>Clear Cart</Button>
+                <Button variant='contained' color='primary' sx={{ flexGrow: 1, flexShrink: 1 }}
+                onClick={()=>navigate('/')}>Continue Shoping</Button>
+            </Box>
         </Box>
     );
 }

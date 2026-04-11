@@ -7,7 +7,11 @@ import Cart from "./Pages/Cart/Cart";
 import UserContentProvider from "./Context/UserContext";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 import CategoriesPage from "./Pages/CategoriesPage/CategoriesPage";
+import CheckOut from "./Pages/CheckOut/CheckOut";
 import ProtectedRouter from "./ProtectedRouter";
+import Profile from "./Pages/Profile/Profile";
+import ProfileInfo from "./Pages/Profile/ProfileInfo";
+import ProfileOrder from "./Pages/Profile/ProfileOrder";
 const router = createBrowserRouter([
 {
 path: '/',
@@ -43,6 +47,32 @@ path: 'cart',
 element:(
 <ProtectedRouter >
  <Cart />
+</ProtectedRouter>
+)},
+
+{
+path: 'profile',
+element:
+<ProtectedRouter >
+ <Profile />
+</ProtectedRouter>,
+children:[
+    {
+        index:true,
+        element:<ProfileInfo />
+    },
+    {
+        path:'orders',
+        element:<ProfileOrder />
+    }
+    
+]
+},
+{
+path: 'CheckOut',
+element:(
+<ProtectedRouter >
+ <CheckOut />
 </ProtectedRouter>
 )},
 
