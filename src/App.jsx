@@ -8,20 +8,28 @@ import theme from './theme.jsx';
 import { CssBaseline } from '@mui/material';
 import getTheme from './theme.jsx';
 import useThemeStore from './useThemeStore.jsx';
-
-const queryClient = new QueryClient(); 
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+const queryClient = new QueryClient();
 
 function App() {
-const mode = useThemeStore((state)=>state.mode);
+  const { i18n } = useTranslation();
+  useEffect(() => {
+    const dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.dir = dir;
+  },
+    [i18n.language]
+  )
+  const mode = useThemeStore((state) => state.mode);
   return (
     <>
-    <useCounterStore/>
-    <QueryClientProvider client={queryClient}>
-    <ThemeProvider theme={getTheme(mode)}>
-      <CssBaseline />
-      <RouterProvider router={router} />
+      <useCounterStore />
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={getTheme(mode)}>
+          <CssBaseline />
+          <RouterProvider router={router} />
         </ThemeProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
     </>
   );
 }

@@ -12,8 +12,14 @@ import useCart from '../../Hooks/useCart';
 import { Badge } from '@mui/material';
 import { Button } from '@mui/material';
 import useThemeStore from '../../useThemeStore';
-
+import { useTranslation } from 'react-i18next';
+import i18n from '../../i18next';
 export default function Navbar() {
+  const {t} = useTranslation();
+  const changeLanguage = () =>{
+    const newLng = i18n.language === 'en' ? 'ar' : 'en';
+    i18n.changeLanguage(newLng);
+  }
   const mode = useThemeStore((state) => state.mode);
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
   const navigate = useNavigate();
@@ -34,7 +40,7 @@ console.log("cardcount", cardcount)
             modimal
           </Typography>
           <Button onClick={toggleTheme} color='inherit'>
-            {mode === 'light' ? 'Dark' : 'Light'} Mode
+            {mode === 'light' ? 'Dark' : 'Light'} {t('Mode')}
           </Button>
           <Box sx={{
             display: "flex",
@@ -42,26 +48,30 @@ console.log("cardcount", cardcount)
             margin: "0 auto",
             display:{xs:'none',sm:'flex'}
           }}>
-            <Link component={RouterLink} to="/" underline="none" color="inherit">Home</Link>
-            <Link component={RouterLink} to="/categories" underline="none" color="inherit">Categories</Link>
+            <Link component={RouterLink} to="/" underline="none" color="inherit">{t('Home')}</Link>
+            <Link component={RouterLink} to="/categories" underline="none" color="inherit">{t('Categories')}</Link>
             {token ? (
               <>
               <Badge badgeContent={cardcount} color="secondary">
-                 <Link component={RouterLink} to="/cart" underline="none" color="inherit">Cart</Link>
+                 <Link component={RouterLink} to="/cart" underline="none" color="inherit">{t('Cart')}</Link>
                  </Badge>
                   <Badge badgeContent={cardcount} color="secondary">
-                 <Link component={RouterLink} to="/profile" underline="none" color="inherit">Profile</Link>
+                 <Link component={RouterLink} to="/profile" underline="none" color="inherit">{t('Profile')}</Link>
                  </Badge>
                 <Typography onClick={handelLogOut} sx={{cursor:"pointer"}}>
-                  Logout
+                  {t('Logout')}
                 </Typography>
               </>
             ) : (
               <>
-                <Link component={RouterLink} to="/login" underline="none" color="inherit">Login</Link>
-                <Link component={RouterLink} to="/register" underline="none" color="inherit">Register</Link>
+                <Link component={RouterLink} to="/login" underline="none" color="inherit">{t('Login')}</Link>
+                <Link component={RouterLink} to="/register" underline="none" color="inherit">{t('Register')}</Link>
               </>
             )}
+            <Button onClick={changeLanguage} color='inherit'>
+           {t('Change Language')}
+            
+          </Button>
           </Box>
           <IconButton color="inherit" sx={{display:{xs:'flex' , sm:'none'}}}>
             <MenuIcon />
