@@ -12,77 +12,77 @@ import ProtectedRouter from "./ProtectedRouter";
 import Profile from "./Pages/Profile/Profile";
 import ProfileInfo from "./Pages/Profile/ProfileInfo";
 import ProfileOrder from "./Pages/Profile/ProfileOrder";
+import ProductsPage from "./ProductsPage/ProductsPage";
+
 const router = createBrowserRouter([
-{
-path: '/',
-element:
-<UserContentProvider>
-<MainLayout />
-</UserContentProvider>,
-
-children: [
-
-{
-index: true,
-element: <Home />
-},
-
-{
-path: 'register',
-element: <Register />
-},
-
-{
-path: 'login',
-element: <Login />
-},
-
-{
-path: 'products/:id',
-element: <ProductDetails />
-},
-
-{
-path: 'cart',
-element:(
-<ProtectedRouter >
- <Cart />
-</ProtectedRouter>
-)},
-
-{
-path: 'profile',
-element:
-<ProtectedRouter >
- <Profile />
-</ProtectedRouter>,
-children:[
-    {
-        index:true,
-        element:<ProfileInfo />
-    },
-    {
-        path:'orders',
-        element:<ProfileOrder />
-    }
-    
-]
-},
-{
-path: 'CheckOut',
-element:(
-<ProtectedRouter >
- <CheckOut />
-</ProtectedRouter>
-)},
-
-{
-path: 'categories',
-element: <CategoriesPage />
-},
-
-]
-}
-])
+  {
+    path: '/',
+    element: (
+      <UserContentProvider>
+        <MainLayout />
+      </UserContentProvider>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Home />
+      },
+      {
+        path: 'register',
+        element: <Register />
+      },
+      {
+        path: 'login',
+        element: <Login />
+      },
+      {
+        path: 'products',
+        element: <ProductsPage />
+      },
+      {
+        path: 'products/:id',
+        element: <ProductDetails />
+      },
+      {
+        path: 'cart',
+        element: (
+          <ProtectedRouter>
+            <Cart />
+          </ProtectedRouter>
+        )
+      },
+      {
+        path: 'profile',
+        element: (
+          <ProtectedRouter>
+            <Profile />
+          </ProtectedRouter>
+        ),
+        children: [
+          {
+            index: true,
+            element: <ProfileInfo />
+          },
+          {
+            path: 'orders',
+            element: <ProfileOrder />
+          }
+        ]
+      },
+      {
+        path: 'CheckOut',
+        element: (
+          <ProtectedRouter>
+            <CheckOut />
+          </ProtectedRouter>
+        )
+      },
+      {
+        path: 'categories',
+        element: <CategoriesPage />
+      },
+    ]
+  }
+]);
 
 export default router;
