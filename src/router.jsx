@@ -13,7 +13,7 @@ import Profile from "./Pages/Profile/Profile";
 import ProfileInfo from "./Pages/Profile/ProfileInfo";
 import ProfileOrder from "./Pages/Profile/ProfileOrder";
 import ProductsPage from "./ProductsPage/ProductsPage";
-
+import ForgotPassword from "./Pages/Auth/ForgotPassword/ForgotPassword";
 const router = createBrowserRouter([
   {
     path: '/',
@@ -31,10 +31,15 @@ const router = createBrowserRouter([
         path: 'register',
         element: <Register />
       },
+    
       {
         path: 'login',
         element: <Login />
-      },
+      }, 
+       {
+  path: 'forgot-password',
+  element: <ForgotPassword />
+},
       {
         path: 'products',
         element: <ProductsPage />
